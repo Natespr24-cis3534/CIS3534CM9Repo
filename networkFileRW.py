@@ -8,13 +8,20 @@
 ##---->>>> Use a try/except clause to import the JSON module
 
 
+try:
+    import json
+except ImportError:
+    print("Error importing the JSON module")
 
 ##---->>>> Create file constants for the file names; file constants can be reused
 ##         There are 2 files to read this program: equip_r.txt and equip_s.txt
 ##         There are 2 files to write in this program: updated.txt and errors.txt
       
 
-
+routerequip = 'equip_r.txt'     
+switchequip = 'equip_s.txt'
+updatedequip = 'updated.txt'
+iperrors = 'invalid.txt'
 
 
 #prompt constants
@@ -68,12 +75,14 @@ def main():
     ##---->>>> read the routers and addresses into the router dictionary
 
     routers = {}
-
+    with open(routerequip) as R:
+        routers = json.load(R)
 
     ##---->>>> read the switches and addresses into the switches dictionary
 
     switches = {}
-
+    with open(switchequip) as S:
+        switches = json.load(S)
 
     #the updated dictionary holds the device name and new ip address
     updated = {}
